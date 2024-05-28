@@ -1,23 +1,15 @@
-import express from 'express';
+import server from './server';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const app = express();
-app.use(express.json());
-
-const PORT = process.env.PORT || 3000;
 const ENVIRONMENT = process.env.ENVIRONMENT;
+const PORT = ENVIRONMENT !== 'development'? process.env.PORT : 3001;
 
-if (ENVIRONMENT === 'development') {
-    // Cambia el puerto en el entorno de desarrollo
-    PORT = 3001;
-}
-
-app.get('/', (_req, res) => {
+server.get('/', (_req, res) => {
     console.log('GET /');
-    res.send('Hello World -- GET /');
+    res.send('Hello World!');
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
