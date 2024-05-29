@@ -1,12 +1,9 @@
-import express, { Request, Response } from 'express';
+import server from './server';
+import { PORT } from './config/envs';
 
-const app = express();
-const port = process.env.PORT || 3000;
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('¡Hola, mundo!');
-});
+const port = PORT || 3001;
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Servidor corriendo en http://localhost:${port}`);
 });
