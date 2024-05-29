@@ -1,9 +1,14 @@
+import express from 'express';
+import { createUser, deleteUser, getUser, getUsers } from "../controllers/users.controller";
 import { Router } from "express";
 
-const router: Router = Router();
+function routerApi(app: express.Application) {
+    const router: Router = Router();
+    app.use('/api/v1', router);
+    router.post('/user', createUser);
+    router.get('/user', getUsers);
+    router.get('/user/:id', getUser);
+    router.delete('/user/:id', deleteUser);
+}
 
-router.get('/', (_req, res) => {
-    res.send('Hello World!');
-});
-
-export default router;
+export default routerApi;

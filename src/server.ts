@@ -1,8 +1,8 @@
 import express from 'express';
-import router from './routes/index';
+import routerApi from './routes/index';
 
 const server = express();
-
-server.use(router)
+server.use(express.json());
+server.use(routerApi)
 
 export default server;
