@@ -3,6 +3,6 @@ import routerApi from './routes/index';
 
 const server = express();
 server.use(express.json());
-server.use(routerApi)
+routerApi(server);
 
 export default server;
